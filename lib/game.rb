@@ -8,7 +8,7 @@ class Game
   # загаданного слова и пустой массив для дальнейшего сбора в него вводимых
   # букв.
   def initialize(word)
-    @letters = word.chars
+    @letters = word.upcase.chars
     @user_guesses = []
   end
 
@@ -36,8 +36,6 @@ class Game
     @letters.map do |letter|
       if @user_guesses.include?(normalize_letter(letter))
         letter
-      else
-        nil
       end
     end
   end
@@ -73,7 +71,7 @@ class Game
   end
 
   def normalize_word
-    @letters.map {|letter| normalize_letter(letter)}
+    @letters.map { |letter| normalize_letter(letter) }
   end
 
   def normalize_letter(letter)

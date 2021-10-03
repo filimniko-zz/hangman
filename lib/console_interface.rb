@@ -19,13 +19,13 @@ class ConsoleInterface
   # Выводит в консоль текущее состояние игры, используя данные из экземпляра
   # класса Game (количество ошибок, сколько осталось попыток и т.д.)
   def print_out
-    puts <<~END
+    puts <<~ACTUAL_SCREEN
       Слово: #{word_to_show}
       #{figure}
       Ошибки (#{@game.errors_made}): #{errors_to_show}
       У вас осталось ошибок: #{@game.errors_allowed}
-
-    END
+      
+    ACTUAL_SCREEN
 
     if @game.won?
       puts "Поздравляем, вы выиграли!"
@@ -61,7 +61,6 @@ class ConsoleInterface
           letter
         end
       end
-
     result.join(" ")
   end
 
@@ -74,8 +73,7 @@ class ConsoleInterface
   # и возвращает её
   def get_input
     print "Введите следующую букву: "
-    letter = (gets[0].upcase)
-    letter
+    gets[0].upcase
   end
 
 end
