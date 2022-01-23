@@ -1,3 +1,5 @@
+require 'colorize'
+
 class ConsoleInterface
   # В константе FIGURES будут лежать все текстовые файлы из папки figures,
   # помещённые в массив. Один элемент массива — одна строка с содержимым целого
@@ -20,9 +22,9 @@ class ConsoleInterface
   # класса Game (количество ошибок, сколько осталось попыток и т.д.)
   def print_out
     puts <<~ACTUAL_SCREEN
-      Слово: #{word_to_show}
-      #{figure}
-      Ошибки (#{@game.errors_made}): #{errors_to_show}
+      #{("Слово: " + word_to_show).colorize(:blue)}
+      #{figure.colorize(:yellow)}
+      #{("Ошибки (" + @game.errors_made.to_s + "): " + errors_to_show).colorize(:red)}
       У вас осталось ошибок: #{@game.errors_allowed}
       
     ACTUAL_SCREEN
